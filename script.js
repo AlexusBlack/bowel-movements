@@ -11,6 +11,9 @@
     const removePooBtn = document.querySelector('.value__remove--poo');
     const removeWeeBtn = document.querySelector('.value__remove--wee');
 
+    const currentDataValue = document.querySelector('.current-date');
+    currentDataValue.textContent = (new Date()).toDateString();
+
     let date = parseInt(getSaveVal('date', getNextMidnight()));
     saveVal('date', date);
     let bowelMovements = {
@@ -33,6 +36,8 @@
     addWeeBtn.addEventListener('click', () => addBowelMovement('wees', 1));
     removePooBtn.addEventListener('click', () => addBowelMovement('poos', -1));
     removeWeeBtn.addEventListener('click', () => addBowelMovement('wees', -1));
+    // simple date reset hack
+    currentDataValue.addEventListener('click', () => localStorage.removeItem(lsp + 'date'));
 
     setInterval(function() {
         if(Date.now() > date) {
